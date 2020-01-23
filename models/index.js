@@ -21,5 +21,6 @@ const items = itemsModel(connection, Sequelize)
 const users = usersModel(connection, Sequelize)
 
 module.exports = {
-    items, users
+    items,
+    users
 }

@@ -1,0 +1,9 @@
+if messages.success
+    div(class='alert alert-success')
+        p <strong>SUCCESS</strong> #{messages.success}
+        a(data-dismiss='alert') &times;
+
+if messages.error
+    div(class='alert alert-warning')
+        p <strong>WARNING</strong> #{messages.error}
+        a(data-dismiss='alert') &times;

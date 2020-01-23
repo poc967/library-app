@@ -9,11 +9,23 @@ const Items = (connection, Sequelize) => {
             type: Sequelize.STRING,
         },
         category: {
-            type: Sequelize.ENUM('fun', 'Tech', 'Tools', 'Home'),
+            type: Sequelize.ENUM('Fun', 'Tech', 'Tools', 'Home'),
         },
-        availability: {
-            type: Sequelize.ENUM('in', 'out'),
-        }
+        isAvailable: {
+            type: Sequelize.BOOLEAN,
+        },
+        checkedOutBy: {
+            type: Sequelize.STRING,
+            reference: {
+                model: 'users',
+                key: 'id'
+            },
+            allowNull: true
+        },
+        description: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
     }, {
         paranoid: true
     })

@@ -1,19 +1,22 @@
 const express = require('express')
-let router = express.Router()
-const model = require('../models')
-//const items = require('../data/items.json')
+let itemsRouter = express.Router()
+const models = require('../models')
+const {
+    authorizeUser
+} = require('../helpers/security')
 
-router.use(express.static('public'))
+itemsRouter.use(express.static('public'))
+itemsRouter.use(authorizeUser)
 
-router.get('/items', async (request, response) => {
-    const items = await model.items.findAll({})
+itemsRouter.get('/', async (request, response) => {
+    const items = await models.items.findAll({})
     response.render('items/show', {
         items
     })
 })
 
-router.get('/items/:identifier', async (request, response) => {
-    const items = await model.items.findAll({
+itemsRouter.get('/:identifier', async (request, response) => {
+    const items = await models.items.findAll({
         where: {
             category: request.params.identifier
         },
@@ -23,8 +26,28 @@ router.get('/items/:identifier', async (request, response) => {
     })
 })
 
-router.get('/items/:identifier/:operation', async (request, response) => {
-    const order = await model.items.findOne({
+itemsRouter.post('/items/checkout/:identifier', async (request, response) => {
+    const item = await models.items.findOne({
+        where: {
+            id: request.params.identifier
+        }
+    })
+
+    console.log(item)
+
+    item.update({
+        checkedOutBy: request.session.userId,
+        isAvailable: false
+    })
+
+    request.flash('success', 'item checked out')
+    return response.redirect('/users/profile')
+
+
+})
+
+/*itemsRouter.get('/:identifier/:operation', async (request, response) => {
+    const order = await models.items.findOne({
         where: {
             id: request.params.identifier
         }
@@ -32,18 +55,38 @@ router.get('/items/:identifier/:operation', async (request, response) => {
 
     if (request.params.operation === 'checkOut') {
         await order.update({
-            availability: 'out'
+            isAvailable: 'false'
         })
     } else {
         await order.update({
-            availability: 'in'
+            isAvailable: 'true'
         })
     }
 
     response.render('items/successfulOrder', {
         order
     })
+})*/
+
+itemsRouter.post('/return/:identifier', async (request, response) => {
+    const item = await models.items.findOne({
+        where: {
+            id: request.params.identifier
+        }
+    })
+
+    item.update({
+        checkedOutBy: null,
+        isAvailable: true
+    })
+
+    request.flash('success', `${item.item} returned`)
+    return response.redirect('/users/profile')
+})
+
+itemsRouter.get('/admin/manage', (request, response) => {
+
 })
 
 module.exports =
-    router
+    itemsRouter

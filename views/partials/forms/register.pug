@@ -1,0 +1,24 @@
+extends ../../users
+
+block content
+
+  include ../flash
+
+  #account-form
+    form(method='post' action='/users/register')
+        div.form-group
+          label(for='first-name') first name:
+          input(type='text', placeholder='first name' name='firstName')
+        div.form-group
+          label(for='last-name') last name:
+          input(type='text', placeholder='last name' name='lastName')
+        div.form-group
+          label(for='email') email:
+          input(type='email', placeholder='name@email.com' name='email')
+        div.form-group
+          label(for='pw') password:
+          input(type='password', placeholder='secret' name='password')
+        div.form-group
+          label(for='pw2') confirm password:
+          input(type='password', placeholder='secret' name='confirmPassword')
+        button(type='submit' id='sign-up') sign up

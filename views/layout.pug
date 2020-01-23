@@ -1,4 +1,17 @@
+doctype html 
 html
     head
         title= title
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet")
+        script(src='./javascript/main.js')
+        #{title}
+
+    body
+
+        include partials/header
+
+        block content 
+
+        include partials/footer

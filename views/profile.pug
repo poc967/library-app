@@ -1,0 +1,30 @@
+extends ./layout 
+
+block content
+
+    include ./partials/flash
+
+    div(class='profile-wrapper')
+        div(class='profile')
+            div(class='profile-avatar')
+                img(src=`https://ui-avatars.com/api/?name=${name}size=128rounded=true`)
+            div(class='profile-info')
+                p <strong>name:</strong> #{name}
+                p <strong>email:</strong> #{email}
+        div(class='options')
+            button(id='sign-up')
+                    a(href='/items') browse items
+            button(id='sign-up')
+                    a(href='#') manage profile
+            if role === 'admin'
+                button(id='signup') manage inventory
+                    a(href='/items/admin/manage')
+        div(class='item-info-wrapper')
+            each order in orders
+                div(class='item-info')
+                    div
+                        p= order.item
+                        p= order.category
+                    form(method='post' action=`/items/return/${order.id}`)
+                        button(type='submit' id='sign-up') return
+                        

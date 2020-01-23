@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -9,100 +9,140 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-    queryInterface.bulkInsert('items', [
-      {
-        item: 'Xbox', category: 'fun', availability: 'Out'
+    return queryInterface.bulkInsert('items', [{
+        item: 'Xbox',
+        category: 'Fun',
+        isAvailable: '0',
+        description: 'A video game console developed by Microsoft'
       },
       {
-        item: 'Telescope', category: 'fun', availability: 'In'
+        item: 'Telescope',
+        category: 'Fun',
+        isAvailable: '1'
       },
       {
-        item: 'Puzzles', category: 'fun', availability: 'Out'
+        item: 'Puzzles',
+        category: 'Fun',
+        isAvailable: '0'
       },
       {
-        item: 'Microscope', category: 'fun', availability: 'In'
+        item: 'Microscope',
+        category: 'Fun',
+        isAvailable: '1'
       },
       {
-        item: 'Lego', category: 'fun', availability: 'Out'
+        item: 'Lego',
+        category: 'Fun',
+        isAvailable: '0'
       },
       {
-        item: 'Playstation', category: 'fun', availability: 'In'
+        item: 'Playstation',
+        category: 'Fun',
+        isAvailable: '1'
       },
       {
-        item: 'ipad', category: 'Tech', availability: 'In'
+        item: 'ipad',
+        category: 'Tech',
+        isAvailable: '1'
       },
       {
-        item: 'Amazon Echo', category: 'Tech', availability: 'Out'
+        item: 'Amazon Echo',
+        category: 'Tech',
+        isAvailable: '0'
       },
       {
-        item: 'Raspberry Pi', category: 'Tech', availability: 'In'
+        item: 'Raspberry Pi',
+        category: 'Tech',
+        isAvailable: '1'
       },
       {
-        item: 'Roku', category: 'Tech', availability: 'In'
+        item: 'Roku',
+        category: 'Tech',
+        isAvailable: '1'
       },
       {
-        item: 'Google Home', category: 'Tech', availability: 'Out'
+        item: 'Google Home',
+        category: 'Tech',
+        isAvailable: '0'
       },
       {
-        item: 'Ladder', category: 'Tools', availability: 'In'
+        item: 'Ladder',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Electric Drill', category: 'Tools', availability: 'In'
+        item: 'Electric Drill',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Bicycle Pump', category: 'Tools', availability: 'In'
+        item: 'Bicycle Pump',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Car battery jumpstarter', category: 'Tools', availability: 'In'
+        item: 'Car battery jumpstarter',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Complete toolset', category: 'Tools', availability: 'In'
+        item: 'Complete toolset',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Paper Shredder', category: 'Tools', availability: 'In'
+        item: 'Paper Shredder',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Garden tools', category: 'Tools', availability: 'In'
+        item: 'Garden tools',
+        category: 'Tools',
+        isAvailable: '1'
       },
       {
-        item: 'Cookie cutter', category: 'Home', availability: 'Out'
+        item: 'Cookie cutter',
+        category: 'Home',
+        isAvailable: '0'
       },
       {
-        item: 'Cake pans', category: 'Home', availability: 'Out'
+        item: 'Cake pans',
+        category: 'Home',
+        isAvailable: '0'
       },
       {
-        item: 'Sewing Machine', category: 'Home', availability: 'In'
+        item: 'Sewing Machine',
+        category: 'Home',
+        isAvailable: '1'
       },
       {
-        item: 'Knitting items', category: 'Home', availability: 'In'
+        item: 'Knitting items',
+        category: 'Home',
+        isAvailable: '1'
       },
       {
-        item: 'Food Processor', category: 'Home', availability: 'In'
+        item: 'Food Processor',
+        category: 'Home',
+        isAvailable: '1'
       },
       {
-        item: 'Blender', category: 'Home', availability: 'Out'
+        item: 'Blender',
+        category: 'Home',
+        isAvailable: '0'
       }
-    ]
-    )
-
-    return queryInterface.bulkInsert('users', [
-      { username: "Upasana", password: "Tanvir" },
-      { username: "Tatiana", password: "Ortiz" },
-      { username: "PatrickM", password: "Muwanguzi" },
-      { username: "PatrickO", password: "OConnor" },
-      { username: "Caleb", password: "French" },
-      { username: "Ujwala", password: "Pawnarkar" },
-      { username: "Mike", password: "Guillemette" },
-      { username: "John", password: "Carmicheal" },
-      { username: "David", password: "Yourgrau" },
-      { username: "Erik", password: "Fogg" },
-      { username: "Alex", password: "Johnson" }
     ])
+
+    /*return queryInterface.bulkInsert('users', [{
+      firstName: "Patrick",
+      lastName: "O'Connor",
+      email: "poc.967@gmail.com",
+      password: "HelloWorld!"
+    }])*/
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: async (queryInterface, Sequelize) => {
 
-    queryInterface.bulkDelete('items')
-    return queryInterface.bulkDelete('users')
+    return queryInterface.bulkDelete('items')
+    //return queryInterface.bulkDelete('users')
   }
 };

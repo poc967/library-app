@@ -1,7 +1,12 @@
 extends layout
 
 block content
-    header
-        h1= title
-    p welcome to #{title}
-
+    div(class='home-page')
+        h1(class='head-tag') library rental platform
+        p(class='head-sub-tag') choose from hundreds of household items available for checkout
+        if !currentUser
+            button(id='sign-up')
+                a(href='./users/register') get started
+        else
+            button(id='sign-up')
+                a(href='/items') browse items

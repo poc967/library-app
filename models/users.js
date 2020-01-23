@@ -5,15 +5,24 @@ const Users = (connection, Sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        username: {
+        firstName: {
             type: Sequelize.STRING,
+            allowNull: false
+        },
+        lastName: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
         password: {
-            type: Sequelize.ENUM,
+            type: Sequelize.STRING,
+            allowNull: false
         }
-    },
-        {
-            paranoid: true
-        })
+    }, {
+        paranoid: true
+    })
 }
 module.exports = Users

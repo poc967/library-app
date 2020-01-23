@@ -1,18 +1,22 @@
-doctype html
-html
-include ../partials/header
+extends ../layout
 
-    body
-        div(class='content')
-            div(class='flex-wrapper')
-                each item in items
-                    item(class='item')
-                        h3= item.item
-                        p= item.category
-                        img( src="/images/" + item.item + ".jpg", height='128', width='318')
-                        button-wrapper(class='button-wrapper')
-                            button(class='button-add')
-                                a(href="/items/" + item.id + "/checkOut") Check Out
-                            button(class='button-remove')
-                                a(href="/items/" + item.id + "/return") Return
-include ../partials/footer
+block content  
+    div(class='flex-wrapper')
+        each item in items
+            item(class= 'item' id=item.id + '-item')
+                description(class='hidden')
+                    p= item.description
+                item-info
+                    h3= item.item
+                    p= item.category
+                    div(id='image-prod-wrapper')
+                        img(class='prod-img' src="/images/" + item.item + ".jpg", height='128', width='318')
+                div(class='button-wrapper')
+                    if item.isAvailable == '1'
+                        form(method='post' action=`items/checkout/${item.id}`)
+                            button(type='submit' id='sign-up') Check Out
+                    else
+                        button(id='sign-up') unavailable
+                    button(id='sign-up')
+                        a(onclick=`activateDescription(${item.id})` id='button-a') Details
+                

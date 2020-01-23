@@ -1,0 +1,15 @@
+extends ../../users
+
+block content
+
+  include ../flash 
+  
+  #login-form 
+      form(method='post' action='/users/profile')
+          div.form-group
+            label(for='email') email:
+            input(type='text', placeholder='email' name='email')
+          div.form-group
+            label(for='pw') password:
+            input(type='password', placeholder='secret' name='password')
+          button(type='submit' id='sign-up') log in

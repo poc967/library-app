@@ -1,13 +1,14 @@
-html
-    head
-        title= title
-        meta(name="viewport" content="width=device-width, initial-scale=1")
-        link(rel='stylesheet', href='/stylesheets/style.css')
-    body
-        header
-            h1= "Library Application"
-            ul(class='nav')
-                each val in ['Home', 'About', 'Items', 'Contact', 'FAQ']
-                    li= val
-        div.container
-            block content
+header
+    a(href='../'): img(src='./images/book.svg' id='book')
+    ul
+        li: a(href='/') home
+        if currentUser
+            li: a(href='/users/profile') my profile
+        li: a(href='/about') about
+        if !currentUser
+            li: a(href='/users/register') sign up
+        if currentUser
+            li: a(href='/users/logout') log out
+            li: a(href='')
+        else
+            li: a(href='/users/login') log in
