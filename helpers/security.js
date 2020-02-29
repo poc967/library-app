@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const models = require('../models')
 
 const hashPassword = (password) => {
@@ -30,12 +30,11 @@ const authenticateUser = async (request, response, next) => {
             return response.redirect('/users/login')
         } else {
             request.session.userId = user.id
+            return response.redirect('/users/profile')
         }
     } catch (error) {
         return response.render('/error', error)
     }
-
-    next()
 }
 
 const authorizeUserLogin = async (request, response, next) => {

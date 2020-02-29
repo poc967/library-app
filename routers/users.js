@@ -1,6 +1,5 @@
 const express = require('express')
 let usersRouter = express.Router()
-const models = require('../models')
 const bodyParser = require('body-parser')
 const createUser = require('../controllers/users')
 const {
@@ -32,7 +31,7 @@ usersRouter.get('/login', async (request, response) => {
     })
 })
 
-usersRouter.post('/profile', validateLoginForm, authenticateUser, authorizeUserLogin)
+usersRouter.post('/login', validateLoginForm, authenticateUser)
 usersRouter.post('/register', validateUserForm, validateUniqueEmail, validateMatchingPasswords, createUser)
 usersRouter.get('/profile', authorizeUserLogin)
 usersRouter.get('/logout', destroySession)

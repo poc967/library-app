@@ -21,13 +21,14 @@ const createUser = async (request, response) => {
             password: hash
         })
 
-        request.session.userId = newUser._id
+        request.session.userId = newUser.id
         request.flash('success', 'new user added')
-        return response.redirect('/users/register')
+        return response.redirect('/users/profile')
 
     } catch (error) {
 
-        return response.status(400).send(error)
+        request.flash('error', 'user could not be created. Please try again.')
+        return response.redirect('/users/register')
     }
 }
 

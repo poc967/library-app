@@ -8,13 +8,15 @@
     "migrate:dev": "./node_modules/.bin/sequelize db:migrate --env development --config ./config/sequelize.js",
     "migrate:dev:down": "./node_modules/.bin/sequelize db:migrate:undo --env development --config ./config/sequelize.js",
     "server:dev": "./node_modules/.bin/nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:prod": "./node_modules/.bin/sequelize db:migrate --env production --config ./config/sequelize.js",
+    "server:prod": "node index.js",
+    "start": "npm run migrate:prod --no-update-notifier && npm run server:prod"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7",
-    "connect-flash": "^0.1.1",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
